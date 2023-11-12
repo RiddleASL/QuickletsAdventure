@@ -14,20 +14,14 @@ public class playerCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //lock cursor to center of screen
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
-
-        xRot -= mouseY;
-        xRot = Mathf.Clamp(xRot, maxDown, maxUp);
-
-        yRot += mouseX;
-
-        transform.localRotation = Quaternion.Euler(xRot, yRot, 0f);
+        
     }
 }
