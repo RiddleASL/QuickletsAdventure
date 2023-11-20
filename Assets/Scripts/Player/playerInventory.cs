@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -60,4 +61,6 @@ public class playerInventory : MonoBehaviour
         string saveData = JsonUtility.ToJson(full);
         File.WriteAllText(Application.dataPath + "/Scripts/Player/playerProps.json", saveData);
     }
+
+    public Inventory getInv() => full.inventory;
 }
