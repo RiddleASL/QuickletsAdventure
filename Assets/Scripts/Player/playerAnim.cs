@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerAnim : MonoBehaviour
 {
     public Animator anim;
+    GameObject player;
     playerMotor pm;
 
     void Start() {
