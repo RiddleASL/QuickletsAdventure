@@ -19,13 +19,14 @@ public class playerInventory : MonoBehaviour
     public class Info{
         public Position position;
         public int health;
+        public int selectedBlock;
     }
 
     // Inventory Stuff
     [System.Serializable]
     public class Blocks{
         public string name;
-        public GameObject block;
+        public int block_id;
         public int count;
     }
     [System.Serializable]
@@ -60,6 +61,15 @@ public class playerInventory : MonoBehaviour
     void SaveData(){
         string saveData = JsonUtility.ToJson(full);
         File.WriteAllText(Application.dataPath + "/Scripts/Player/playerProps.json", saveData);
+    }
+
+    public void blockCount(int block_id, int count){
+        Debug.Log(1);
+        for(int i = 0; i < full.inventory.blocks.Count; i++){
+            if(full.inventory.blocks[i].block_id == block_id){
+                full.inventory.blocks[i].count += count;
+            }
+        }
     }
 
     public Inventory getInv() => full.inventory;

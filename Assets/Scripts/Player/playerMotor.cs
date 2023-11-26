@@ -29,6 +29,8 @@ public class playerMotor : MonoBehaviour
 
     [SerializeField] Transform GFX;
     [SerializeField] float rotSpeed = 5f;
+
+    bool aiming = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,13 @@ public class playerMotor : MonoBehaviour
     {
         //check if player is on the ground
         isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
+
+        //aiming
+        if(Input.GetAxisRaw("Fire2") == 1 && !isCrouching){
+            aiming = true;
+        }else {
+            aiming = false;
+        }
         
         //gravity
         if (isGrounded && yVel < 0){
@@ -123,4 +132,6 @@ public class playerMotor : MonoBehaviour
     public Vector3 flatMovment() => new Vector3(movement.x, 0, movement.z);
     public bool getCrouching() => isCrouching;
     public float getYVel() => yVel;
+    public bool isAiming() => aiming;
+    public Transform GFXTransform() => GFX;
 }

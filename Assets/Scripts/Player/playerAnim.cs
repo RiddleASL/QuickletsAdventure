@@ -29,11 +29,15 @@ public class playerAnim : MonoBehaviour
         if(pm.grounded()){
             anim.SetBool("isGrounded", true);
         }
+        if(pm.isAiming()){
+            anim.SetBool("isAiming", true);
+        }
         anim.SetFloat("moveBlend", pm.getSpeed() / pm.getSprintSpeed());
         anim.SetFloat("yVel", pm.getYVel());
     }
 
     void resetBool() {
+        anim.SetBool("isAiming", false);
         anim.SetBool("isGrounded", false);
         anim.SetBool("isMoving", false);
         anim.SetBool("isCrouching", false);
