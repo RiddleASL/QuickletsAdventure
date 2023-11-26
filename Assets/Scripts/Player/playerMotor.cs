@@ -6,6 +6,7 @@ using UnityEngine;
 public class playerMotor : MonoBehaviour
 {
     CharacterController con;
+    playerInventory pi;
 
     Vector3 movement;
     float yVel;
@@ -23,9 +24,10 @@ public class playerMotor : MonoBehaviour
     bool isCrouching;
 
     [SerializeField] Transform groundCheck;
-    [SerializeField] float groundRadius = 0.2f;
+    [SerializeField] Vector3 groundVolume;
     bool isGrounded = true;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] LayerMask blockMask;
 
     [SerializeField] Transform GFX;
     [SerializeField] float rotSpeed = 5f;
@@ -34,6 +36,8 @@ public class playerMotor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pi = GameObject.FindGameObjectWithTag("Global").GetComponent<playerInventory>();
+
         con = GetComponent<CharacterController>();
         currSpeed = speed;
     }
@@ -42,7 +46,7 @@ public class playerMotor : MonoBehaviour
     void Update()
     {
         //check if player is on the ground
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
+        isGrounded = Physics.CheckBox(groundCheck.position, groundVolume, groundCheck.rotation, groundMask);
 
         //aiming
         if(Input.GetAxisRaw("Fire2") == 1 && !isCrouching){
@@ -116,11 +120,32 @@ public class playerMotor : MonoBehaviour
             GFX.rotation = Quaternion.Slerp(GFX.rotation, Quaternion.LookRotation(GFXmovement), rotSpeed * Time.deltaTime);
         }
 
+        //player reground
+        if (transform.position.y < -150){
+            regroundPlayer();
+        }
+
+        //save game
+        if(Input.GetKeyDown(KeyCode.P)){
+            pi.SaveGame();
+        }
+    }
+
+    void regroundPlayer(){
+        //respawn player
+        transform.position = new Vector3(pi.full.playerInfo.safePosition.x, pi.full.playerInfo.safePosition.y, pi.full.playerInfo.safePosition.z);
+    }
+
+    void updatePlayerInfo(){
+        //update player info
+        pi.full.playerInfo.currPosition.x = transform.position.x;
+        pi.full.playerInfo.currPosition.y = transform.position.y;
+        pi.full.playerInfo.currPosition.z = transform.position.z;
     }
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
+        Gizmos.DrawWireCube(groundCheck.position, groundVolume);
         Gizmos.DrawWireSphere(transform.position + Vector3.up * 1.5f, 0.2f);
     }
 
@@ -134,4 +159,5 @@ public class playerMotor : MonoBehaviour
     public float getYVel() => yVel;
     public bool isAiming() => aiming;
     public Transform GFXTransform() => GFX;
+    public bool standingOnBlock() => Physics.CheckBox(groundCheck.position, groundVolume, groundCheck.rotation, blockMask);
 }

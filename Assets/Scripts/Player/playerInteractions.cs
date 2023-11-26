@@ -52,7 +52,7 @@ public class playerInteractions : MonoBehaviour
             transform.Find("blockPlace").GetChild(0).GetChild(0).GetChild(0).GetComponent<Collider>().isTrigger = true;
             bool isColliding = transform.Find("blockPlace").GetChild(0).GetChild(0).GetChild(0).GetComponent<blockInfo>().getIsColliding();
 
-            if(Input.GetAxisRaw("Fire1") == 1 && transform.Find("blockPlace").childCount != 0 && pi.full.inventory.blocks[pi.full.playerInfo.selectedBlock].count > 0){
+            if(Input.GetMouseButtonDown(0) && transform.Find("blockPlace").childCount != 0 && pi.full.inventory.blocks[pi.full.playerInfo.selectedBlock].count > 0){
                 if(!isColliding){
                     pi.blockCount(pi.full.playerInfo.selectedBlock, -1);
                     Instantiate(b.blocksList[pi.full.playerInfo.selectedBlock], transform.Find("blockPlace").position, transform.Find("blockPlace").rotation);

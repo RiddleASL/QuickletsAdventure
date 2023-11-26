@@ -7,66 +7,121 @@ using UnityEngine;
 public class playerInventory : MonoBehaviour
 {
     [SerializeField] TextAsset json;
+    Transform player;
 
     //Player Stuff
     [System.Serializable]
-    public class Position{
+    public class Position
+    {
         public float x;
         public float y;
         public float z;
     }
     [System.Serializable]
-    public class Info{
-        public Position position;
+    public class Info
+    {
+        public Position currPosition;
+        public Position safePosition;
         public int health;
         public int selectedBlock;
     }
 
     // Inventory Stuff
     [System.Serializable]
-    public class Blocks{
+    public class Blocks
+    {
         public string name;
         public int block_id;
         public int count;
     }
     [System.Serializable]
-    public class Inventory{
+    public class Inventory
+    {
         public List<Blocks> blocks;
-    }    
+    }
+
+    //Global Stuff
+    [System.Serializable]
+    public class GlobalInfo
+    {
+        public Position checkPointPos;
+    }
 
     [System.Serializable]
-    public class PlayerProps{
+    public class PlayerProps
+    {
         public Inventory inventory;
         public Info playerInfo;
+        public GlobalInfo globalInfo;
     }
 
     public PlayerProps full = new PlayerProps();
     // Start is called before the first frame update
     void Start()
     {
-        if(json == null){
-            json = Resources.Load<TextAsset>("JSON/playerProps");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (Directory.Exists(Application.persistentDataPath + "/saveData"))
+        {
+            getData();
         }
-        full = JsonUtility.FromJson<PlayerProps>(json.text);
+        else
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/saveData");
+            getData();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P)){
-            SaveData();
-        }
+        Debug.Log(Application.persistentDataPath);
     }
 
-    void SaveData(){
+    //Public Functions for Player Position
+    public void SaveSafePos()
+    {
+        full.playerInfo.safePosition.x = player.position.x;
+        full.playerInfo.safePosition.y = player.position.y;
+        full.playerInfo.safePosition.z = player.position.z;
+    }
+
+    //Public Functions for Player Info
+    public void changeHealth(int amount)
+    {
+        full.playerInfo.health += amount;
+    }
+
+    public void changeSelectedBlock(int block_id)
+    {
+        full.playerInfo.selectedBlock = block_id;
+    }
+
+    //Save All Data
+    public void SaveGame()
+    {
+        SaveSafePos();
+        SaveData();
+    }
+
+    void SaveData()
+    {
         string saveData = JsonUtility.ToJson(full);
-        File.WriteAllText(Application.dataPath + "/Scripts/Player/playerProps.json", saveData);
+        File.WriteAllText(Application.persistentDataPath + "/saveData/saveFile.json", saveData);
     }
 
-    public void blockCount(int block_id, int count){
+    void getData()
+    {
+        string saveData = File.ReadAllText(Application.persistentDataPath + "/saveData/saveFile.json");
+        full = JsonUtility.FromJson<PlayerProps>(saveData);
+    }
+
+    public void blockCount(int block_id, int count)
+    {
         Debug.Log(1);
-        for(int i = 0; i < full.inventory.blocks.Count; i++){
-            if(full.inventory.blocks[i].block_id == block_id){
+        for (int i = 0; i < full.inventory.blocks.Count; i++)
+        {
+            if (full.inventory.blocks[i].block_id == block_id)
+            {
                 full.inventory.blocks[i].count += count;
             }
         }
