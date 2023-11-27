@@ -116,12 +116,12 @@ public class playerMotor : MonoBehaviour
 
         //rotate GFX
         Vector3 GFXmovement = new Vector3(movement.x, 0, movement.z);
-        if(GFXmovement != Vector3.zero){
+        if(GFXmovement != Vector3.zero && !aiming){
             GFX.rotation = Quaternion.Slerp(GFX.rotation, Quaternion.LookRotation(GFXmovement), rotSpeed * Time.deltaTime);
         }
 
         //player reground
-        if (transform.position.y < -150){
+        if (transform.position.y < -50){
             regroundPlayer();
         }
 
@@ -134,6 +134,7 @@ public class playerMotor : MonoBehaviour
     void regroundPlayer(){
         //respawn player
         transform.position = new Vector3(pi.full.playerInfo.safePosition.x, pi.full.playerInfo.safePosition.y, pi.full.playerInfo.safePosition.z);
+        yVel = 0;
     }
 
     void updatePlayerInfo(){

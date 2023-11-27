@@ -56,6 +56,7 @@ public class playerInventory : MonoBehaviour
     }
 
     public PlayerProps full = new PlayerProps();
+    bool newSave = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +68,7 @@ public class playerInventory : MonoBehaviour
         else
         {
             Directory.CreateDirectory(Application.persistentDataPath + "/saveData");
+            newSave = true;
             getData();
         }
     }
@@ -111,8 +113,13 @@ public class playerInventory : MonoBehaviour
 
     void getData()
     {
-        string saveData = File.ReadAllText(Application.persistentDataPath + "/saveData/saveFile.json");
-        full = JsonUtility.FromJson<PlayerProps>(saveData);
+        if(newSave){
+            full = JsonUtility.FromJson<PlayerProps>(json.ToString());
+            File.WriteAllText(Application.persistentDataPath + "/saveData/saveFile.json", json.ToString());
+        }else{
+            string saveData = File.ReadAllText(Application.persistentDataPath + "/saveData/saveFile.json");
+            full = JsonUtility.FromJson<PlayerProps>(saveData);
+        }
     }
 
     public void blockCount(int block_id, int count)

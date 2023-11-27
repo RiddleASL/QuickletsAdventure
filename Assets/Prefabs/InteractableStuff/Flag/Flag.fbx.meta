@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c660dad51729e4444af312ff1127a369
+guid: 56f1f889f6980b64dbea784b85118e6e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,13 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: ButtonBase
-    second: {fileID: 2100000, guid: ee188987ab3de5242af2015ea988c713, type: 2}
+      name: Flag
+    second: {fileID: 2100000, guid: d7368b371e1981949837e5a175fa14a2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: RedButton
-    second: {fileID: 2100000, guid: ba7400c24835a564aaef9ef2d4d97b96, type: 2}
+      name: Pole
+    second: {fileID: 2100000, guid: d1acd14e251be0b498d4f65fc160cb70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Top
+    second: {fileID: 2100000, guid: 210bdc79ae77e2f44ae452e34f6678a5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -42,10 +47,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.75
+    globalScale: 0.6
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -98,7 +103,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.0075
+    globalScale: 0.6
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

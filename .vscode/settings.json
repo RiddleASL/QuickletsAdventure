@@ -52,5 +52,5 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "CleanProj3D2021.3.21f1LTS.sln"
+    "dotnet.defaultSolution": "QuickletsAdventure.sln"
 }
