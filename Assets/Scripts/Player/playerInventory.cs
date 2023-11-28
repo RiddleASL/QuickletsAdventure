@@ -93,11 +93,6 @@ public class playerInventory : MonoBehaviour
         full.playerInfo.health += amount;
     }
 
-    public void changeSelectedBlock(int block_id)
-    {
-        full.playerInfo.selectedBlock = block_id;
-    }
-
     //Save All Data
     public void SaveGame()
     {

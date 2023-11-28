@@ -7,6 +7,7 @@ public class playerMotor : MonoBehaviour
 {
     CharacterController con;
     playerInventory pi;
+    blocks b;
 
     Vector3 movement;
     float yVel;
@@ -32,11 +33,13 @@ public class playerMotor : MonoBehaviour
     [SerializeField] Transform GFX;
     [SerializeField] float rotSpeed = 5f;
 
-    bool aiming = false;
+    bool aiming;
+    bool interacting;
     // Start is called before the first frame update
     void Start()
     {
         pi = GameObject.FindGameObjectWithTag("Global").GetComponent<playerInventory>();
+        b = GameObject.FindGameObjectWithTag("Global").GetComponent<blocks>();
 
         con = GetComponent<CharacterController>();
         currSpeed = speed;
@@ -119,6 +122,23 @@ public class playerMotor : MonoBehaviour
         if(GFXmovement != Vector3.zero && !aiming){
             GFX.rotation = Quaternion.Slerp(GFX.rotation, Quaternion.LookRotation(GFXmovement), rotSpeed * Time.deltaTime);
         }
+
+        //Change Selected Block
+        if(Input.GetKeyDown(KeyCode.E)){
+            if(pi.full.playerInfo.selectedBlock < pi.full.inventory.blocks.Count - 1){
+                pi.full.playerInfo.selectedBlock++;
+            } else {
+                pi.full.playerInfo.selectedBlock = 0;
+            }
+        } else if(Input.GetKeyDown(KeyCode.Q)){
+            if(pi.full.playerInfo.selectedBlock > 0){
+                pi.full.playerInfo.selectedBlock--;
+            } else {
+                pi.full.playerInfo.selectedBlock = pi.full.inventory.blocks.Count - 1;
+            }
+        }
+
+        //Interacting 
 
         //player reground
         if (transform.position.y < -50){
