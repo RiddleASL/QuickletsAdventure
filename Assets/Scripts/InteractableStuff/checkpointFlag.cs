@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class checkpointFlag : MonoBehaviour
@@ -16,7 +17,11 @@ public class checkpointFlag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!isActive){
+            transform.Find("Flag").GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.red);
+        } else {
+            transform.Find("Flag").GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.green);
+        }
     }
 
     private void OnTriggerEnter(Collider other) {

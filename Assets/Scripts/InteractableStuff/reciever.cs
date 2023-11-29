@@ -23,5 +23,8 @@ public class reciever : MonoBehaviour
     void extendableBridge(){
         Transform platform = transform.Find("Platform");
         platform.localPosition = Vector3.Lerp(platform.localPosition, Vector3.zero, 0.5f * Time.deltaTime);
+        if(Vector3.Distance(platform.localPosition, Vector3.zero) < 0.1f){
+            
+        }
     }
 }

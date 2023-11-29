@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class playerInteractions : MonoBehaviour
 {
@@ -39,6 +39,7 @@ public class playerInteractions : MonoBehaviour
                 Instantiate(b.blocksList[pi.full.playerInfo.selectedBlock], transform.Find("blockPlace").position, transform.Find("blockPlace").rotation, transform.Find("blockPlace"));
                 int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 transform.Find("blockPlace").GetChild(0).GetChild(0).GetChild(0).gameObject.layer = LayerIgnoreRaycast;
+                transform.Find("blockPlace").GetChild(0).GetChild(0).GetChild(0).GetComponent<NavMeshObstacle>().enabled = false;
             } else if(transform.Find("blockPlace").childCount != 0 && pi.full.inventory.blocks[pi.full.playerInfo.selectedBlock].count == 0){
                 Destroy(transform.Find("blockPlace").GetChild(0).gameObject);
             }

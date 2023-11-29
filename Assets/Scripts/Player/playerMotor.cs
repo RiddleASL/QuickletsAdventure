@@ -6,11 +6,12 @@ using UnityEngine;
 public class playerMotor : MonoBehaviour
 {
     CharacterController con;
-    playerInventory pi;
+    [HideInInspector] public playerInventory pi;
     blocks b;
 
     Vector3 movement;
     float yVel;
+    public int maxHealth = 4;
 
     float currSpeed;
     float maxSpeed;
@@ -33,6 +34,10 @@ public class playerMotor : MonoBehaviour
     [SerializeField] Transform GFX;
     [SerializeField] float rotSpeed = 5f;
 
+    [SerializeField] float invincibilityTime = 1f;
+    float invincibilityTimer = 0f;
+    bool invincible = false;
+
     bool aiming;
     bool interacting;
     // Start is called before the first frame update
@@ -43,6 +48,7 @@ public class playerMotor : MonoBehaviour
 
         con = GetComponent<CharacterController>();
         currSpeed = speed;
+        maxSpeed = speed;
     }
 
     // Update is called once per frame
@@ -138,7 +144,13 @@ public class playerMotor : MonoBehaviour
             }
         }
 
-        //Interacting 
+        //Invincibility Timer
+        if(invincibilityTimer > 0){
+            invincibilityTimer -= Time.deltaTime;
+            invincible = true;
+        } else {
+            invincible = false;
+        }
 
         //player reground
         if (transform.position.y < -50){
@@ -148,6 +160,10 @@ public class playerMotor : MonoBehaviour
         //save game
         if(Input.GetKeyDown(KeyCode.P)){
             pi.SaveGame();
+        }
+
+        if(pi.full.playerInfo.health <= 0){
+            death();
         }
     }
 
@@ -162,6 +178,24 @@ public class playerMotor : MonoBehaviour
         pi.full.playerInfo.currPosition.x = transform.position.x;
         pi.full.playerInfo.currPosition.y = transform.position.y;
         pi.full.playerInfo.currPosition.z = transform.position.z;
+    }
+
+    public void heal(){
+        //heal player
+        if(pi.full.playerInfo.health < maxHealth){
+            pi.full.playerInfo.health += 1;
+        }
+    }
+
+    public void takeDamage(){
+        //take damage
+        pi.full.playerInfo.health -= 1;
+        invincibilityTimer = invincibilityTime;
+    }
+
+    void death(){
+        //Show Death Screen
+        Debug.Log("Death");
     }
 
     private void OnDrawGizmos() {
@@ -181,4 +215,5 @@ public class playerMotor : MonoBehaviour
     public bool isAiming() => aiming;
     public Transform GFXTransform() => GFX;
     public bool standingOnBlock() => Physics.CheckBox(groundCheck.position, groundVolume, groundCheck.rotation, blockMask);
+    public bool isInvincible() => invincible;
 }
