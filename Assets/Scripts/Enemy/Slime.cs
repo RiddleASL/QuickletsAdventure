@@ -26,7 +26,7 @@ public class Slime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(transform.position, player.transform.position) < detectionRange){
+        if(Vector3.Distance(transform.position, player.transform.position) < detectionRange && agent.enabled){
             //Speed
             currSpeed = Mathf.Sin(Time.time * f) * speed;
             currSpeed = Mathf.Abs(currSpeed);

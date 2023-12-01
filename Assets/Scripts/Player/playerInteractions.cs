@@ -97,8 +97,10 @@ public class playerInteractions : MonoBehaviour
             }
         } else {
             //Change material outline color to Black
-            lookingATBlock.GetComponent<MeshRenderer>().material.SetColor("_OutlineColor", Color.black);
-            lookingATBlock = null;
+            if(lookingATBlock != null){
+                lookingATBlock.GetComponent<MeshRenderer>().material.SetColor("_OutlineColor", Color.black);
+                                                                                                                                lookingATBlock = null;  
+            }
         }
     }
 
