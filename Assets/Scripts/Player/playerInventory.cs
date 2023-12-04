@@ -24,6 +24,7 @@ public class playerInventory : MonoBehaviour
         public Position safePosition;
         public int health;
         public int selectedBlock;
+        public int collected;
     }
 
     // Inventory Stuff

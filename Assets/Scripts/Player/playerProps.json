@@ -25,7 +25,8 @@
             "z": 0.0
         },
         "health": 4,
-        "selectedBlock": 0
+        "selectedBlock": 0,
+        "collected": 0
     },
     "globalInfo": {
         "checkPointPos": {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -828,6 +828,10 @@ MonoBehaviour:
     _prefab: Assets/Prefabs/InteractableStuff/Milk/Jug/Jug.prefab
   - _gameObject: {fileID: 1130148958}
     _prefab: Assets/Prefabs/InteractableStuff/Milk/Jug/Jug.fbx
+  - _gameObject: {fileID: 1998980319}
+    _prefab: Assets/Prefabs/InteractableStuff/MilkPowder/Powder.prefab
+  - _gameObject: {fileID: 1207708349}
+    _prefab: Assets/Prefabs/InteractableStuff/MilkPowder/powder.fbx
 --- !u!4 &470544966
 Transform:
   m_ObjectHideFlags: 11
@@ -910,6 +914,7 @@ MonoBehaviour:
         z: 0
       health: 4
       selectedBlock: 1
+      collected: 0
     globalInfo:
       checkPointPos:
         x: 0
@@ -1265,6 +1270,11 @@ GameObject:
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -6483251193590497534, guid: ce5e98fb7df7a6746a6eb80a45801bc6, type: 3}
   m_PrefabInstance: {fileID: 1690155057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1207708349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4120718810322037449, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+  m_PrefabInstance: {fileID: 3886274689804542526}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1212070776
 GameObject:
@@ -9255,6 +9265,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.994}
+--- !u!1 &1998980319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4888716736891528359, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+  m_PrefabInstance: {fileID: 3886274689804542526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2016946213 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4921611551969486615, guid: 906bd5615b1012e4489b6540365ffb91, type: 3}
@@ -9653,6 +9668,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c28d821be7ce584288395b9e457820e, type: 3}
+--- !u!1001 &3886274689804542526
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397055728772554327, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888716736891528359, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
+      propertyPath: m_Name
+      value: Powder
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 474d24525faf7bd4e97da449bf037bff, type: 3}
 --- !u!1001 &4921611550225174322
 PrefabInstance:
   m_ObjectHideFlags: 0
