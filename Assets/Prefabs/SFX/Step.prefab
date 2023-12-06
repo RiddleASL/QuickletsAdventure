@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4780333903024589437}
   - component: {fileID: -2294396290010801598}
+  - component: {fileID: 5678248010413745712}
   m_Layer: 0
-  m_Name: Walking
+  m_Name: Step
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,6 +130,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5678248010413745712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039694238370690179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce3686e110f60e4da213562ff4ce622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestruct: 0.1
 --- !u!1 &7378189380809447045
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,9 +185,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f3359bd30a4fb5247864fbe10d9f89a4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

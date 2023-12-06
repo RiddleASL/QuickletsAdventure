@@ -26,7 +26,7 @@ public class milkJug : MonoBehaviour
         if(other.gameObject.tag == "Player"){
             playerMotor pm = other.gameObject.GetComponent<playerMotor>();
             if(pm.pi.full.playerInfo.health < pm.maxHealth){
-                pm.pi.full.playerInfo.health++;
+                pm.heal();
                 Destroy(gameObject);
             }
         }
