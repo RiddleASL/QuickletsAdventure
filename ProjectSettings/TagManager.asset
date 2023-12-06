@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Global
   - Block
+  - SFX
   - temp
   layers:
   - Default
