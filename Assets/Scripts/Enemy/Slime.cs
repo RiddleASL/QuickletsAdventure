@@ -7,6 +7,7 @@ public class Slime : MonoBehaviour
 {
     NavMeshAgent agent;
     GameObject player;
+    SFXController sfx;
 
     public float speed;
     float currSpeed;
@@ -20,6 +21,7 @@ public class Slime : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        sfx = GameObject.FindGameObjectWithTag("SFX").GetComponent<SFXController>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -42,14 +44,17 @@ public class Slime : MonoBehaviour
         transform.Find("GFX").gameObject.SetActive(false);
         GetComponent<Collider>().enabled = false;
         Destroy(gameObject, 10);
+        sfx.PlaySound(5);
         deathEffect.SetActive(true);
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
         if(other.gameObject.tag == "Player" && !other.gameObject.GetComponent<playerMotor>().isInvincible()){
             other.gameObject.GetComponent<playerMotor>().takeDamage();
             Debug.Log("Hit");
         }
+
+        Debug.Log(other.gameObject.GetComponent<playerMotor>().isInvincible());
     }
 
     private void OnDrawGizmos() {

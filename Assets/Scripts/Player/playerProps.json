@@ -4,12 +4,12 @@
             {
                 "name": "Crate",
                 "block_id": 0,
-                "count": 3
+                "count": 0
             },
             {
                 "name": "Ladder",
                 "block_id": 1,
-                "count": 1
+                "count": 0
             }
         ]
     },

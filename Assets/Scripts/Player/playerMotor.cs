@@ -8,6 +8,7 @@ public class playerMotor : MonoBehaviour
     CharacterController con;
     [HideInInspector] public playerInventory pi;
     blocks b;
+    playerSounds ps;
 
     Vector3 movement;
     float yVel;
@@ -49,6 +50,7 @@ public class playerMotor : MonoBehaviour
         con = GetComponent<CharacterController>();
         currSpeed = speed;
         maxSpeed = speed;
+        ps = GetComponent<playerSounds>();
     }
 
     // Update is called once per frame
@@ -74,11 +76,8 @@ public class playerMotor : MonoBehaviour
         //player jump
         if (Input.GetButton("Jump") && isGrounded && !isCrouching){
             yVel = jumpForce;
+            ps.jump();
         }
-
-        //player movement
-        float xVel = Input.GetAxis("Horizontal");
-        float zVel = Input.GetAxis("Vertical");
 
         //speed modifires
         if (Input.GetKey(KeyCode.LeftShift) && !isCrouching){
@@ -184,6 +183,8 @@ public class playerMotor : MonoBehaviour
         //heal player
         if(pi.full.playerInfo.health < maxHealth){
             pi.full.playerInfo.health += 1;
+            ps.heal();
+            Debug.Log("heal");
         }
     }
 
@@ -191,6 +192,7 @@ public class playerMotor : MonoBehaviour
         //take damage
         pi.full.playerInfo.health -= 1;
         invincibilityTimer = invincibilityTime;
+        ps.takeDamage();
     }
 
     void death(){
@@ -216,4 +218,5 @@ public class playerMotor : MonoBehaviour
     public Transform GFXTransform() => GFX;
     public bool standingOnBlock() => Physics.CheckBox(groundCheck.position, groundVolume, groundCheck.rotation, blockMask);
     public bool isInvincible() => invincible;
+    public LayerMask getGroundLayer() => groundMask;
 }
