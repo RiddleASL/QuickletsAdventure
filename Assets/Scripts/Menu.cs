@@ -1,4 +1,4 @@
-using System.Collections;
+awqusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ public class Menu : MonoBehaviour
 
     public void PlayNowButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
     public void SettingsButton()
