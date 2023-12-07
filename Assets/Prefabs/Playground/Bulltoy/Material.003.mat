@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4424924125929991326
+--- !u!114 &-1990373460772160674
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Material.009
+  m_Name: Material.003
   m_Shader: {fileID: 4800000, guid: 313fcf3aebc04cf4ab4f8c5f2850be7f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -103,7 +103,7 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -116,7 +116,7 @@ Material:
     - _RimStepSmooth: 0
     - _ShadowStep: 0.5
     - _ShadowStepSmooth: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularStep: 0.6
@@ -127,11 +127,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.3295362, g: 0.3295362, b: 0.3295362, a: 1}
-    - _Color: {r: 0.32953617, g: 0.32953617, b: 0.32953617, a: 1}
+    - _BaseColor: {r: 0.3977249, g: 0.3977249, b: 0.3977249, a: 1}
+    - _Color: {r: 0.39772487, g: 0.39772487, b: 0.39772487, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 1}
+    - _RimColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 0.088655606, g: 0.088655606, b: 0.088655606, a: 1}
+    - _SpecularColor: {r: 0.039546248, g: 0.039546248, b: 0.039546248, a: 1}
   m_BuildTextureStacks: []
