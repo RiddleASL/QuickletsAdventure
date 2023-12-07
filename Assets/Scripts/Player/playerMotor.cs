@@ -74,7 +74,7 @@ public class playerMotor : MonoBehaviour
         }
 
         //player jump
-        if (Input.GetButton("Jump") && isGrounded && !isCrouching){
+        if (Input.GetButtonDown("Jump") && isGrounded && !isCrouching){
             yVel = jumpForce;
             ps.jump();
         }
@@ -198,6 +198,11 @@ public class playerMotor : MonoBehaviour
     void death(){
         //Show Death Screen
         Debug.Log("Death");
+    }
+
+    public void stomp(){
+        //! !!!STOMPH!!!
+        yVel = jumpForce/1.5f;
     }
 
     private void OnDrawGizmos() {
