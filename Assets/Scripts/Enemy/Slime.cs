@@ -37,13 +37,17 @@ public class Slime : MonoBehaviour
             //Destination
             agent.SetDestination(player.transform.position);
         }
+
+        if(player.GetComponent<playerMotor>().isAlive() == false){
+            gameObject.SetActive(false);
+        }
     }
 
     public void death(){
         agent.enabled = false;
         transform.Find("GFX").gameObject.SetActive(false);
         GetComponent<Collider>().enabled = false;
-        Destroy(gameObject, 10);
+        Destroy(gameObject, 5);
         sfx.PlaySound(5);
         deathEffect.SetActive(true);
     }

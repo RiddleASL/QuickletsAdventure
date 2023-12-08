@@ -32,7 +32,7 @@ public class playerCam : MonoBehaviour
     void Update()
     {
         //Camera Pos
-        if(pm.isAiming()){
+        if(pm.isAiming() && pm.isAlive()){
             // Camera.main.transform.position = aimPos.position;
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, aimPos.position, 0.1f);
             gfx.transform.localRotation = Quaternion.Euler(0, yRot, 0f);
@@ -45,8 +45,10 @@ public class playerCam : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
         //rotate camera
-        xRot -= mouseY;
-        yRot += mouseX;
+        if(pm.isAlive()){
+            yRot += mouseX;
+            xRot -= mouseY;
+        }
 
         //clamp camera rotation
         xRot = Mathf.Clamp(xRot, maxDown, maxUp);

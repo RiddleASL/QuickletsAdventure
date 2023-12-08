@@ -60,7 +60,7 @@ public class playerMotor : MonoBehaviour
         isGrounded = Physics.CheckBox(groundCheck.position, groundVolume, groundCheck.rotation, groundMask);
 
         //aiming
-        if(Input.GetAxisRaw("Fire2") == 1 && !isCrouching){
+        if(Input.GetAxisRaw("Fire2") == 1 && !isCrouching && isAlive()){
             aiming = true;
         }else {
             aiming = false;
@@ -120,6 +120,9 @@ public class playerMotor : MonoBehaviour
         movement = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")) * currSpeed;
         movement = Vector3.ClampMagnitude(Quaternion.Euler(0,Camera.main.transform.eulerAngles.y,0) * movement, maxSpeed);
         movement.y = yVel;
+        if(!isAlive()){
+            movement = Vector3.zero;
+        }
         con.Move(movement * Time.deltaTime);
 
         //rotate GFX
@@ -129,13 +132,13 @@ public class playerMotor : MonoBehaviour
         }
 
         //Change Selected Block
-        if(Input.GetKeyDown(KeyCode.E)){
+        if(Input.GetKeyDown(KeyCode.E) && !isAlive()){
             if(pi.full.playerInfo.selectedBlock < pi.full.inventory.blocks.Count - 1){
                 pi.full.playerInfo.selectedBlock++;
             } else {
                 pi.full.playerInfo.selectedBlock = 0;
             }
-        } else if(Input.GetKeyDown(KeyCode.Q)){
+        } else if(Input.GetKeyDown(KeyCode.Q) && !isAlive()){
             if(pi.full.playerInfo.selectedBlock > 0){
                 pi.full.playerInfo.selectedBlock--;
             } else {
@@ -154,11 +157,6 @@ public class playerMotor : MonoBehaviour
         //player reground
         if (transform.position.y < -50){
             regroundPlayer();
-        }
-
-        //save game
-        if(Input.GetKeyDown(KeyCode.P)){
-            pi.SaveGame();
         }
 
         if(pi.full.playerInfo.health <= 0){
@@ -224,4 +222,5 @@ public class playerMotor : MonoBehaviour
     public bool standingOnBlock() => Physics.CheckBox(groundCheck.position, groundVolume, groundCheck.rotation, blockMask);
     public bool isInvincible() => invincible;
     public LayerMask getGroundLayer() => groundMask;
+    public bool isAlive() => pi.full.playerInfo.health > 0;
 }
