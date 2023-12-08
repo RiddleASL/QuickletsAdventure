@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -860,8 +860,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 164976211}
-  - component: {fileID: 164976213}
   - component: {fileID: 164976212}
+  - component: {fileID: 164976213}
   m_Layer: 0
   m_Name: Terrain_(-32.00, 0.00, 0.00)
   m_TagString: Untagged
@@ -893,7 +893,7 @@ TerrainCollider:
   m_GameObject: {fileID: 164976210}
   m_Material: {fileID: 0}
   m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: e61b92d0d2860c941873aaa946246501, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: fa4ff6b0c6f1f9a41a2406a26ca37b5d, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &164976213
 Terrain:
@@ -904,7 +904,7 @@ Terrain:
   m_GameObject: {fileID: 164976210}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: e61b92d0d2860c941873aaa946246501, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: fa4ff6b0c6f1f9a41a2406a26ca37b5d, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -920,15 +920,15 @@ Terrain:
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 8a2521b77a65d3d45842e331909181e3, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
-  m_ScaleInLightmap: 0.8
+  m_ScaleInLightmap: 1
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_RenderingLayerMask: 1
-  m_AllowAutoConnect: 1
+  m_AllowAutoConnect: 0
 --- !u!1 &174686949 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4921611551969486615, guid: 906bd5615b1012e4489b6540365ffb91, type: 3}
@@ -4357,7 +4357,7 @@ TerrainCollider:
   m_GameObject: {fileID: 549876127}
   m_Material: {fileID: 0}
   m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: a5326f051df748342b0da0009abf63da, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 8a6d3af6eaefbbc449ee23ee76acccbe, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &549876129
 Terrain:
@@ -4368,7 +4368,7 @@ Terrain:
   m_GameObject: {fileID: 549876127}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: a5326f051df748342b0da0009abf63da, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 8a6d3af6eaefbbc449ee23ee76acccbe, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -5128,9 +5128,9 @@ MonoBehaviour:
   - _gameObject: {fileID: 333806403}
     _prefab: Assets/Low Poly Pack - Environment Lite/Prefabs/Fence_1_5.prefab
   - _gameObject: {fileID: 1607293310}
-    _prefab: Assets/Objects/SHIP 1.blend
+    _prefab: 
   - _gameObject: {fileID: 837461303}
-    _prefab: Assets/Objects/Swings.blend
+    _prefab: 
   - _gameObject: {fileID: 1994281469}
     _prefab: Assets/Playground Low Poly/Prefabs/SM_Swings_03.prefab
   - _gameObject: {fileID: 1679842874}
