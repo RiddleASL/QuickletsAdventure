@@ -34,7 +34,7 @@ public class playerMotor : MonoBehaviour
     [SerializeField] Transform GFX;
     [SerializeField] float rotSpeed = 5f;
 
-    [SerializeField] float invincibilityTime = 1f;
+    [SerializeField] float invincibilityTime = 1.0f;
     float invincibilityTimer = 0f;
     bool invincible = false;
 
