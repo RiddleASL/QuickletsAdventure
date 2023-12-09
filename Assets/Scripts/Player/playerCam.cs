@@ -41,8 +41,8 @@ public class playerCam : MonoBehaviour
         }
 
         //Camera rotation
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
         //rotate camera
         xRot -= mouseY;
