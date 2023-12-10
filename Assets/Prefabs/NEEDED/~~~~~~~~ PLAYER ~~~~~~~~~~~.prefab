@@ -5158,7 +5158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5eddc5a1a337b4595ce8b27537edb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 1000
+  sensitivity: 10
   maxUp: 75
   maxDown: -75
   defaultPos: {fileID: 1126393440720802418}

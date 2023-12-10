@@ -30,9 +30,9 @@ public class powderCollect : MonoBehaviour
     {
         if(other.transform.tag == "Player") {
             pi.full.playerInfo.collected++;
-            sfx.PlaySound(4);
-
             Destroy(gameObject);
+            sfx.PlaySound(4);
+            
         }
     }
 }

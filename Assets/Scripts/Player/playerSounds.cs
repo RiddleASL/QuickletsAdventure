@@ -29,8 +29,8 @@ public class playerSounds : MonoBehaviour
         //footsteps
         if(Physics.CheckSphere(leftFoot.position, stepRadius, groundLayer) && !stepLeft)
         {
-            sfx.PlaySound(0);
             stepLeft = true;
+            sfx.PlaySound(0);
         } else if(!Physics.CheckSphere(leftFoot.position, stepRadius, groundLayer))
         {
             stepLeft = false;
@@ -38,13 +38,15 @@ public class playerSounds : MonoBehaviour
 
         if (Physics.CheckSphere(rightFoot.position, stepRadius, groundLayer) && !stepRight)
         {
-            sfx.PlaySound(0);
             stepRight = true;
+            sfx.PlaySound(0);
         }
         else if (!Physics.CheckSphere(rightFoot.position, stepRadius, groundLayer))
         {
             stepRight = false;
         }
+
+        
     }
     
     public void jump(){
