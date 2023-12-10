@@ -43,9 +43,17 @@ public class playerInventory : MonoBehaviour
 
     //Global Stuff
     [System.Serializable]
+    public class Audio{
+        public float master = 1f;
+        public float music = 1f;
+        public float sfx = 1f;
+    }
+
+    [System.Serializable]
     public class GlobalInfo
     {
         public Position checkPointPos;
+        public Audio audio;
     }
 
     [System.Serializable]

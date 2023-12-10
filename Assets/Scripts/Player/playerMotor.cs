@@ -78,7 +78,7 @@ public class playerMotor : MonoBehaviour
         }
 
         //player jump
-        if (Input.GetButtonDown("Jump") && isGrounded && !isCrouching){
+        if (Input.GetButtonDown("Jump") && isGrounded && !isCrouching && isAlive()){
             yVel = jumpForce;
             ps.jump();
         }
@@ -154,7 +154,7 @@ public class playerMotor : MonoBehaviour
         }
 
         //Change Selected Block
-        if(Input.GetKeyDown(KeyCode.E) && !isAlive()){
+        if(Input.GetKeyDown(KeyCode.E) && isAlive()){
             if(pi.full.playerInfo.selectedBlock < pi.full.inventory.blocks.Count - 1){
                 pi.full.playerInfo.selectedBlock++;
             }
@@ -162,7 +162,7 @@ public class playerMotor : MonoBehaviour
             {
                 pi.full.playerInfo.selectedBlock = 0;
             }
-        } else if(Input.GetKeyDown(KeyCode.Q) && !isAlive()){
+        } else if(Input.GetKeyDown(KeyCode.Q) && isAlive()){
             if(pi.full.playerInfo.selectedBlock > 0){
                 pi.full.playerInfo.selectedBlock--;
             }

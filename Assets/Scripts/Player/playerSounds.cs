@@ -9,8 +9,8 @@ public class playerSounds : MonoBehaviour
     public Transform rightFoot;
     public float stepRadius = 0.2f;
 
-    bool stepLeft;
-    bool stepRight;
+    bool stepLeft = true;
+    bool stepRight = true;
 
     //Sounds
     SFXController sfx;

@@ -3,7 +3,37 @@ guid: e1d43e01f426c054c9f5ebba234a5f3d
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Logs
+    second: {fileID: 2100000, guid: bb7a0c9e0acc264409120fb26c03b5d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof
+    second: {fileID: 2100000, guid: 1638eb9200dda6c4fb5741693b0c1094, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree
+    second: {fileID: 2100000, guid: 3a794ebae6bdfdc47a22e7d41a44fae4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TreeHouse
+    second: {fileID: 2100000, guid: d63d388f952913d48b12c07467a38dcd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: log2
+    second: {fileID: 2100000, guid: 619815f5a2472664cb1e9023f5fe2483, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: log3
+    second: {fileID: 2100000, guid: 63f9e20248369d8449177b0823b4da20, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
