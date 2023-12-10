@@ -11,6 +11,7 @@ public class playerAnim : MonoBehaviour
     void Start() {
         anim = GetComponent<Animator>();
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<playerMotor>();
+
     }
 
     // Update is called once per frame
@@ -32,6 +33,9 @@ public class playerAnim : MonoBehaviour
         if(pm.isAiming()){
             anim.SetBool("isAiming", true);
         }
+        if(!pm.isAlive()){
+            anim.SetBool("isAlive", false);
+        }
         anim.SetFloat("moveBlend", pm.getSpeed() / pm.getSprintSpeed());
         anim.SetFloat("yVel", pm.getYVel());
     }
@@ -41,5 +45,6 @@ public class playerAnim : MonoBehaviour
         anim.SetBool("isGrounded", false);
         anim.SetBool("isMoving", false);
         anim.SetBool("isCrouching", false);
+        anim.SetBool("isAlive", true);
     }
 }

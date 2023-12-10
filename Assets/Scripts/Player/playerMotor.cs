@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class playerMotor : MonoBehaviour
@@ -60,8 +59,7 @@ public class playerMotor : MonoBehaviour
         isGrounded = Physics.CheckBox(groundCheck.position, groundVolume, groundCheck.rotation, groundMask);
 
         //aiming
-        if (Input.GetAxisRaw("Fire2") == 1 && !isCrouching)
-        {
+        if(Input.GetAxisRaw("Fire2") == 1 && !isCrouching && isAlive()){
             aiming = true;
         }
         else
@@ -80,8 +78,7 @@ public class playerMotor : MonoBehaviour
         }
 
         //player jump
-        if (Input.GetButton("Jump") && isGrounded && !isCrouching)
-        {
+        if (Input.GetButtonDown("Jump") && isGrounded && !isCrouching){
             yVel = jumpForce;
             ps.jump();
         }
@@ -144,6 +141,9 @@ public class playerMotor : MonoBehaviour
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * currSpeed;
         movement = Vector3.ClampMagnitude(Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * movement, maxSpeed);
         movement.y = yVel;
+        if(!isAlive()){
+            movement = Vector3.zero;
+        }
         con.Move(movement * Time.deltaTime);
 
         //rotate GFX
@@ -154,21 +154,16 @@ public class playerMotor : MonoBehaviour
         }
 
         //Change Selected Block
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (pi.full.playerInfo.selectedBlock < pi.full.inventory.blocks.Count - 1)
-            {
+        if(Input.GetKeyDown(KeyCode.E) && !isAlive()){
+            if(pi.full.playerInfo.selectedBlock < pi.full.inventory.blocks.Count - 1){
                 pi.full.playerInfo.selectedBlock++;
             }
             else
             {
                 pi.full.playerInfo.selectedBlock = 0;
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (pi.full.playerInfo.selectedBlock > 0)
-            {
+        } else if(Input.GetKeyDown(KeyCode.Q) && !isAlive()){
+            if(pi.full.playerInfo.selectedBlock > 0){
                 pi.full.playerInfo.selectedBlock--;
             }
             else
@@ -194,14 +189,7 @@ public class playerMotor : MonoBehaviour
             regroundPlayer();
         }
 
-        //save game
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            pi.SaveGame();
-        }
-
-        if (pi.full.playerInfo.health <= 0)
-        {
+        if(pi.full.playerInfo.health <= 0){
             death();
         }
     }
@@ -246,8 +234,12 @@ public class playerMotor : MonoBehaviour
         Debug.Log("Death");
     }
 
-    private void OnDrawGizmos()
-    {
+    public void stomp(){
+        //! !!!STOMPH!!!
+        yVel = jumpForce/1.5f;
+    }
+
+    private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(groundCheck.position, groundVolume);
         Gizmos.DrawWireSphere(transform.position + Vector3.up * 1.5f, 0.2f);
@@ -266,4 +258,5 @@ public class playerMotor : MonoBehaviour
     public bool standingOnBlock() => Physics.CheckBox(groundCheck.position, groundVolume, groundCheck.rotation, blockMask);
     public bool isInvincible() => invincible;
     public LayerMask getGroundLayer() => groundMask;
+    public bool isAlive() => pi.full.playerInfo.health > 0;
 }

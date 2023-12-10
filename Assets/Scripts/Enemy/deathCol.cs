@@ -13,6 +13,8 @@ public class deathCol : MonoBehaviour
     private void OnTriggerStay(Collider other) {
         if(other.gameObject.tag == "Player" && !pm.grounded()){
             parentObj.GetComponent<Slime>().death();
+            pm.stomp();
+            gameObject.SetActive(false);
         }
     }
 }
