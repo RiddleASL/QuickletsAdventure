@@ -35,7 +35,7 @@ public class playerMotor : MonoBehaviour
     [SerializeField] Transform GFX;
     [SerializeField] float rotSpeed = 5f;
 
-    [SerializeField] float invincibilityTime = 1f;
+    [SerializeField] float invincibilityTime = 1.0f;
     float invincibilityTimer = 0f;
     bool invincible = false;
 
@@ -60,147 +60,194 @@ public class playerMotor : MonoBehaviour
         isGrounded = Physics.CheckBox(groundCheck.position, groundVolume, groundCheck.rotation, groundMask);
 
         //aiming
-        if(Input.GetAxisRaw("Fire2") == 1 && !isCrouching){
+        if (Input.GetAxisRaw("Fire2") == 1 && !isCrouching)
+        {
             aiming = true;
-        }else {
+        }
+        else
+        {
             aiming = false;
         }
-        
+
         //gravity
-        if (isGrounded && yVel < 0){
+        if (isGrounded && yVel < 0)
+        {
             yVel = -2f;
-        }else{
+        }
+        else
+        {
             yVel -= gravity * Time.deltaTime;
         }
 
         //player jump
-        if (Input.GetButton("Jump") && isGrounded && !isCrouching){
+        if (Input.GetButton("Jump") && isGrounded && !isCrouching)
+        {
             yVel = jumpForce;
             ps.jump();
         }
 
         //speed modifires
-        if (Input.GetKey(KeyCode.LeftShift) && !isCrouching){
-            if(currSpeed < speed * sprintMod){
+        if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        {
+            if (currSpeed < speed * sprintMod)
+            {
                 currSpeed += acceloration;
             }
             maxSpeed = speed * sprintMod;
-        }else if(isCrouching){
-            if(currSpeed > speed * crouchMod){
+        }
+        else if (isCrouching)
+        {
+            if (currSpeed > speed * crouchMod)
+            {
                 currSpeed -= acceloration;
             }
-            if(maxSpeed > speed * crouchMod){
+            if (maxSpeed > speed * crouchMod)
+            {
                 maxSpeed -= acceloration;
             }
-        }else{
-            if(currSpeed > speed){
+        }
+        else
+        {
+            if (currSpeed > speed)
+            {
                 currSpeed -= acceloration;
-            } else if(currSpeed < speed){
+            }
+            else if (currSpeed < speed)
+            {
                 currSpeed += acceloration;
             }
-            if(maxSpeed > speed){
+            if (maxSpeed > speed)
+            {
                 maxSpeed -= acceloration;
-            } else if(maxSpeed < speed){
+            }
+            else if (maxSpeed < speed)
+            {
                 maxSpeed += acceloration;
             }
         }
 
         //crouch
-        if (Input.GetKey(KeyCode.LeftControl) && isGrounded){
+        if (Input.GetKey(KeyCode.LeftControl) && isGrounded)
+        {
             con.height = defaultHeight * crouchMod;
             isCrouching = true;
             con.center = new Vector3(0, 0.5f, 0);
-        }else if(!Physics.CheckSphere(transform.position + Vector3.up * 1.5f, 0.2f, groundMask)){
+        }
+        else if (!Physics.CheckSphere(transform.position + Vector3.up * 1.5f, 0.2f, groundMask))
+        {
             con.height = defaultHeight;
             isCrouching = false;
             con.center = new Vector3(0, 1, 0);
         }
 
         //apply movement
-        movement = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")) * currSpeed;
-        movement = Vector3.ClampMagnitude(Quaternion.Euler(0,Camera.main.transform.eulerAngles.y,0) * movement, maxSpeed);
+        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * currSpeed;
+        movement = Vector3.ClampMagnitude(Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * movement, maxSpeed);
         movement.y = yVel;
         con.Move(movement * Time.deltaTime);
 
         //rotate GFX
         Vector3 GFXmovement = new Vector3(movement.x, 0, movement.z);
-        if(GFXmovement != Vector3.zero && !aiming){
+        if (GFXmovement != Vector3.zero && !aiming)
+        {
             GFX.rotation = Quaternion.Slerp(GFX.rotation, Quaternion.LookRotation(GFXmovement), rotSpeed * Time.deltaTime);
         }
 
         //Change Selected Block
-        if(Input.GetKeyDown(KeyCode.E)){
-            if(pi.full.playerInfo.selectedBlock < pi.full.inventory.blocks.Count - 1){
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (pi.full.playerInfo.selectedBlock < pi.full.inventory.blocks.Count - 1)
+            {
                 pi.full.playerInfo.selectedBlock++;
-            } else {
+            }
+            else
+            {
                 pi.full.playerInfo.selectedBlock = 0;
             }
-        } else if(Input.GetKeyDown(KeyCode.Q)){
-            if(pi.full.playerInfo.selectedBlock > 0){
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (pi.full.playerInfo.selectedBlock > 0)
+            {
                 pi.full.playerInfo.selectedBlock--;
-            } else {
+            }
+            else
+            {
                 pi.full.playerInfo.selectedBlock = pi.full.inventory.blocks.Count - 1;
             }
         }
 
         //Invincibility Timer
-        if(invincibilityTimer > 0){
+        if (invincibilityTimer > 0)
+        {
             invincibilityTimer -= Time.deltaTime;
             invincible = true;
-        } else {
+        }
+        else
+        {
             invincible = false;
         }
 
         //player reground
-        if (transform.position.y < -50){
+        if (transform.position.y < -50)
+        {
             regroundPlayer();
         }
 
         //save game
-        if(Input.GetKeyDown(KeyCode.P)){
+        if (Input.GetKeyDown(KeyCode.P))
+        {
             pi.SaveGame();
         }
 
-        if(pi.full.playerInfo.health <= 0){
+        if (pi.full.playerInfo.health <= 0)
+        {
             death();
         }
     }
 
-    void regroundPlayer(){
+    void regroundPlayer()
+    {
         //respawn player
         transform.position = new Vector3(pi.full.playerInfo.safePosition.x, pi.full.playerInfo.safePosition.y, pi.full.playerInfo.safePosition.z);
         yVel = 0;
     }
 
-    void updatePlayerInfo(){
+    void updatePlayerInfo()
+    {
         //update player info
         pi.full.playerInfo.currPosition.x = transform.position.x;
         pi.full.playerInfo.currPosition.y = transform.position.y;
         pi.full.playerInfo.currPosition.z = transform.position.z;
     }
 
-    public void heal(){
+    public void heal()
+    {
         //heal player
-        if(pi.full.playerInfo.health < maxHealth){
+        if (pi.full.playerInfo.health < maxHealth)
+        {
             pi.full.playerInfo.health += 1;
             ps.heal();
             Debug.Log("heal");
         }
     }
 
-    public void takeDamage(){
+    public void takeDamage()
+    {
         //take damage
         pi.full.playerInfo.health -= 1;
         invincibilityTimer = invincibilityTime;
         ps.takeDamage();
     }
 
-    void death(){
+    void death()
+    {
         //Show Death Screen
         Debug.Log("Death");
     }
 
-    private void OnDrawGizmos() {
+    private void OnDrawGizmos()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(groundCheck.position, groundVolume);
         Gizmos.DrawWireSphere(transform.position + Vector3.up * 1.5f, 0.2f);
