@@ -11,7 +11,7 @@ public class playerMotor : MonoBehaviour
 
     Vector3 movement;
     float yVel;
-    public int maxHealth = 4;
+    public int maxHealth = 3;
 
     float currSpeed;
     float maxSpeed;
@@ -183,31 +183,8 @@ public class playerMotor : MonoBehaviour
             invincible = false;
         }
 
-        //player reground
-        if (transform.position.y < -50)
-        {
-            regroundPlayer();
-        }
-
-        if(pi.full.playerInfo.health <= 0){
-            death();
-        }
     }
 
-    void regroundPlayer()
-    {
-        //respawn player
-        transform.position = new Vector3(pi.full.playerInfo.safePosition.x, pi.full.playerInfo.safePosition.y, pi.full.playerInfo.safePosition.z);
-        yVel = 0;
-    }
-
-    void updatePlayerInfo()
-    {
-        //update player info
-        pi.full.playerInfo.currPosition.x = transform.position.x;
-        pi.full.playerInfo.currPosition.y = transform.position.y;
-        pi.full.playerInfo.currPosition.z = transform.position.z;
-    }
 
     public void heal()
     {
@@ -226,12 +203,6 @@ public class playerMotor : MonoBehaviour
         pi.full.playerInfo.health -= 1;
         invincibilityTimer = invincibilityTime;
         ps.takeDamage();
-    }
-
-    void death()
-    {
-        //Show Death Screen
-        Debug.Log("Death");
     }
 
     public void stomp(){

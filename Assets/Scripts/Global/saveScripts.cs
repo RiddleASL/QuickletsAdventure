@@ -25,7 +25,6 @@ public class saveScripts : MonoBehaviour
         if(currTime >= saveInterval && pm.grounded() && !pm.standingOnBlock()){
             currTime = 0f;
             Debug.Log("Autosaving...");
-            pi.SaveSafePos();
         }
     }
 }

@@ -7,7 +7,6 @@ using UnityEngine;
 public class playerInventory : MonoBehaviour
 {
     [SerializeField] TextAsset json;
-    Transform player;
 
     //Player Stuff
     [System.Serializable]
@@ -20,8 +19,6 @@ public class playerInventory : MonoBehaviour
     [System.Serializable]
     public class Info
     {
-        public Position currPosition;
-        public Position safePosition;
         public int health;
         public int selectedBlock;
         public int collected;
@@ -52,7 +49,6 @@ public class playerInventory : MonoBehaviour
     [System.Serializable]
     public class GlobalInfo
     {
-        public Position checkPointPos;
         public Audio audio;
     }
 
@@ -62,6 +58,7 @@ public class playerInventory : MonoBehaviour
         public Inventory inventory;
         public Info playerInfo;
         public GlobalInfo globalInfo;
+        public float sensitivity = 5f;
     }
 
     public PlayerProps full = new PlayerProps();
@@ -69,7 +66,6 @@ public class playerInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         if (Directory.Exists(Application.persistentDataPath + "/saveData"))
         {
             getData();
@@ -80,20 +76,20 @@ public class playerInventory : MonoBehaviour
             newSave = true;
             getData();
         }
+
+        //set block counts to 0
+        for (int i = 0; i < full.inventory.blocks.Count; i++)
+        {
+            full.inventory.blocks[i].count = 0;
+        }
+        //set health to 3
+        full.playerInfo.health = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Application.persistentDataPath);
-    }
-
-    //Public Functions for Player Position
-    public void SaveSafePos()
-    {
-        full.playerInfo.safePosition.x = player.position.x;
-        full.playerInfo.safePosition.y = player.position.y;
-        full.playerInfo.safePosition.z = player.position.z;
+        // Debug.Log(Application.persistentDataPath);
     }
 
     //Public Functions for Player Info
@@ -105,7 +101,6 @@ public class playerInventory : MonoBehaviour
     //Save All Data
     public void SaveGame()
     {
-        SaveSafePos();
         SaveData();
     }
 

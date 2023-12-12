@@ -5,8 +5,9 @@ using UnityEngine;
 public class playerCam : MonoBehaviour
 {
     playerMotor pm;
+    playerInventory pi;
 
-    public float sensitivity = 100f;
+    public float sensitivity;
     
     float xRot = 0f;
     float yRot = 0f;
@@ -26,11 +27,13 @@ public class playerCam : MonoBehaviour
         Cursor.visible = false;
         gfx = GameObject.FindGameObjectWithTag("Player").transform.Find("GFX").gameObject;
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<playerMotor>();
+        pi = GameObject.FindGameObjectWithTag("Global").GetComponent<playerInventory>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        sensitivity = pi.full.sensitivity;
         //Camera Pos
         if(pm.isAiming() && pm.isAlive()){
             // Camera.main.transform.position = aimPos.position;
@@ -54,6 +57,8 @@ public class playerCam : MonoBehaviour
         xRot = Mathf.Clamp(xRot, maxDown, maxUp);
 
         //apply rotation
-        transform.localRotation = Quaternion.Euler(xRot, yRot, 0f);
+        if(pm.isAlive()){
+            transform.localRotation = Quaternion.Euler(xRot, yRot, 0f);
+        }
     }
 }

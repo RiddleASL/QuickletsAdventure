@@ -7,7 +7,7 @@ public class SFXController : MonoBehaviour
 {
     //Volume controls
     playerInventory pi;
-    
+
     public GameObject[] sfxClips;
     public GameObject[] musicClips;
 
@@ -15,7 +15,10 @@ public class SFXController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
         pi = GameObject.FindGameObjectWithTag("Global").GetComponent<playerInventory>();
     }
 
@@ -25,7 +28,8 @@ public class SFXController : MonoBehaviour
         musicClips[0].GetComponent<AudioSource>().volume = pi.full.globalInfo.audio.music * pi.full.globalInfo.audio.master;
     }
 
-    public void PlaySound(int index){
+    public void PlaySound(int index)
+    {
         GameObject sfx = Instantiate(sfxClips[index], player.position, Quaternion.identity);
         sfx.GetComponent<AudioSource>().volume = pi.full.globalInfo.audio.sfx * pi.full.globalInfo.audio.master;
     }

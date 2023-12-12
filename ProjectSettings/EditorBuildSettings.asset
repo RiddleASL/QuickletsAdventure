@@ -8,13 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: c8f720dd2c477854680933be2cb98000
-  - enabled: 0
-    path: Assets/Scenes/qa.unity
-    guid: 6fac0408a80907445b9d26423e865a42
   - enabled: 1
     path: Assets/Scenes/Garden Level.unity
     guid: ba0473e40fafd8e40986403b8a5cac49
   - enabled: 1
-    path: Assets/Scenes/Playground.unity
-    guid: c515b5c6e18de8546b4399f6a47a007b
+    path: Assets/Terrains/Playground Level.unity
+    guid: eb7ad1353bc66a848918aa2562e6a51a
   m_configObjects: {}

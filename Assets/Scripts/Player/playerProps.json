@@ -14,35 +14,16 @@
         ]
     },
     "playerInfo": {
-        "currPosition": {
-            "x": 0.0,
-            "y": 0.0,
-            "z": 0.0
-        },
-        "safePosition": {
-            "x": 0.0,
-            "y": 0.0,
-            "z": 0.0
-        },
-        "health": 4,
+        "health": 3,
         "selectedBlock": 0,
         "collected": 0
     },
     "globalInfo": {
-        "checkPointPos": {
-            "x": 0.0,
-            "y": 0.0,
-            "z": 0.0
-        },
-        "savePos": {
-            "x": 0.0,
-            "y": 0.0,
-            "z": 0.0
-        },
         "audio": {
             "music": 1,
             "sound": 1,
             "master": 1
         }
-    }
+    },
+    "sensitivity": 5
 }

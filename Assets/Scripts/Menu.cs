@@ -9,10 +9,9 @@ public class Menu : MonoBehaviour
     public GameObject About;
     public GameObject Controls;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        MainMenuButton();
+    private void Update() {    
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void PlayNowButton()
@@ -33,25 +32,25 @@ public class Menu : MonoBehaviour
         Settings.SetActive(false);
     }
 
-        public void AboutButton()
+    public void AboutButton()
     {
         About.SetActive(true);
         MainMenu.SetActive(false);
     }
 
-        public void MainMenuAboutButton()
+    public void MainMenuAboutButton()
     {
         MainMenu.SetActive(true);
         About.SetActive(false);
     }
 
-            public void ControlsBack()
+    public void ControlsBack()
     {
         About.SetActive(true);
         Controls.SetActive(false);
     }
 
-             public void ControlsEnter()
+    public void ControlsEnter()
     {
         Controls.SetActive(true);
         About.SetActive(false);
